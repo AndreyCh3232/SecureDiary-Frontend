@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { Login } from './cmps/Login.jsx'
-import { Diary } from './cmps/Diary.jsx'
-import './styles/main.scss'
+import { Login } from './assets/cmps/Login.jsx'
+import { Diary } from './assets/cmps/Diary.jsx'
+import './assets/styles/main.scss'
 
-export function App() {
+export function RootCmp() {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
 
     function handleLogin(password) {

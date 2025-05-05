@@ -16,6 +16,7 @@ export function Login({ onLogin }) {
                     <input
                         type="password"
                         placeholder="הכנס סיסמה"
+                        style={{ direction: 'rtl', textAlign: 'right' }}
                         value={password}
                         onChange={(ev) => setPassword(ev.target.value)}
                     />
@@ -24,4 +25,4 @@ export function Login({ onLogin }) {
             </div>
         </div>
     )
-}
+} 

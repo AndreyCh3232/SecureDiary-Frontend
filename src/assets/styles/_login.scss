@@ -1,0 +1,40 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: $background-color;
+
+    .login-card {
+        background: $card-background;
+        padding: 2rem;
+        border-radius: $border-radius;
+        box-shadow: $box-shadow;
+        width: 300px;
+        text-align: center;
+    }
+
+    input {
+        width: 100%;
+        margin: 1rem 0;
+        padding: 0.75rem;
+        border: 1px solid #ccc;
+        border-radius: $border-radius;
+    }
+
+    button {
+        width: 100%;
+        padding: 0.75rem;
+        background-color: $primary-color;
+        color: #fff;
+        border: none;
+        border-radius: $border-radius;
+        margin-top: 1rem;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: darken($primary-color, 10%);
+        }
+    }
+}

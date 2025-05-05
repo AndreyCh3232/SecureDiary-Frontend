@@ -1,0 +1,41 @@
+.diary-container {
+    padding: 2rem;
+
+    .diary-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .entry-card {
+        background: $card-background;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-radius: $border-radius;
+        box-shadow: $box-shadow;
+
+        h4 {
+            margin: 0 0 0.5rem 0;
+        }
+
+        p {
+            margin: 0;
+            color: darken($text-color, 20%);
+        }
+    }
+
+    .add-button {
+        background-color: $secondary-color;
+        color: #fff;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: $border-radius;
+        font-size: 1rem;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: darken($secondary-color, 10%);
+        }
+    }
+}

@@ -35,6 +35,19 @@ export function Diary({ onLogout }) {
         setEntries(prevEntries => prevEntries.filter(entry => entry.id !== entryId))
     }
 
+    function editEntry(entryId) {
+        const entryToEdit = entries.find(entry => entry.id === entryId)
+        if (!entryToEdit) return
+
+        const updatedText = prompt('ערוך את הרשומה:', entryToEdit.text)
+        if (!updatedText) return
+
+        const updatedEntries = entries.map(entry =>
+            entry.id === entryId ? { ...entry, text: updatedText } : entry
+        )
+        setEntries(updatedEntries)
+    }
+
     return (
         <div className="diary-container">
             <div className="diary-header">
@@ -47,9 +60,12 @@ export function Diary({ onLogout }) {
 
             {entries.map(entry => (
                 <div className="entry-card" key={entry.id}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         <h4>{entry.date}</h4>
-                        <button onClick={() => deleteEntry(entry.id)} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>❌</button>
+                        <div style={{ display: 'flex', gap: '0.5rem' }}>
+                            <button onClick={() => editEntry(entry.id)} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>✏️</button>
+                            <button onClick={() => deleteEntry(entry.id)} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>❌</button>
+                        </div>
                     </div>
                     <p>{entry.text}</p>
                 </div>

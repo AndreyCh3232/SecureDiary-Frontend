@@ -4,11 +4,13 @@ import { Diary } from './assets/cmps/Diary.jsx'
 import './assets/styles/main.scss'
 
 export function RootCmp() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
-    // const [isDarkMode, setIsDarkMode] = useState(false)
     const [isDarkMode, setIsDarkMode] = useState(() => {
         const savedMode = localStorage.getItem('darkMode')
         return savedMode === 'true'
+    })
+
+    const [isLoggedIn, setIsLoggedIn] = useState(() => {
+        return localStorage.getItem('isLoggedIn') === 'true'
     })
 
     useEffect(() => {
@@ -19,9 +21,15 @@ export function RootCmp() {
     function handleLogin(password) {
         if (password === '1234') {
             setIsLoggedIn(true)
+            localStorage.setItem('isLoggedIn', 'true')
         } else {
             alert('סיסמה שגויה')
         }
+    }
+
+    function handleLogout() {
+        setIsLoggedIn(false)
+        localStorage.removeItem('isLoggedIn')
     }
 
     return (
@@ -32,7 +40,11 @@ export function RootCmp() {
                 </button>
             </header>
 
-            {isLoggedIn ? <Diary /> : <Login onLogin={handleLogin} />}
+            {isLoggedIn ? (
+                <Diary onLogout={handleLogout} />
+            ) : (
+                <Login onLogin={handleLogin} />
+            )}
         </div>
     )
 }

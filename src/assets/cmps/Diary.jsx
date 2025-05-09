@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 
 const STORAGE_KEY = 'diaryEntries'
 
-export function Diary() {
+export function Diary({ onLogout }) {
     const [entries, setEntries] = useState([])
 
     useEffect(() => {
@@ -39,7 +39,10 @@ export function Diary() {
         <div className="diary-container">
             <div className="diary-header">
                 <h1>היומן שלי 📖</h1>
-                <button className="add-button" onClick={addEntry}>+ הוספת רשומה</button>
+                <div style={{ display: 'flex', gap: '0.5rem' }}>
+                    <button className="add-button" onClick={addEntry}>+ הוספת רשומה</button>
+                    <button className="logout-button" onClick={onLogout}>התנתק</button>
+                </div>
             </div>
 
             {entries.map(entry => (

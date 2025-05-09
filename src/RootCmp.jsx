@@ -5,10 +5,15 @@ import './assets/styles/main.scss'
 
 export function RootCmp() {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
-    const [isDarkMode, setIsDarkMode] = useState(false)
+    // const [isDarkMode, setIsDarkMode] = useState(false)
+    const [isDarkMode, setIsDarkMode] = useState(() => {
+        const savedMode = localStorage.getItem('darkMode')
+        return savedMode === 'true'
+    })
 
     useEffect(() => {
         document.body.classList.toggle('dark-mode', isDarkMode)
+        localStorage.setItem('darkMode', isDarkMode)
     }, [isDarkMode])
 
     function handleLogin(password) {

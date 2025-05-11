@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react'
 import { EditModal } from './EditModal.jsx'
+import { DeleteModal } from './DeleteModal.jsx'
 
 const STORAGE_KEY = 'diaryEntries'
 
 export function Diary({ onLogout }) {
     const [entries, setEntries] = useState([])
     const [editingEntry, setEditingEntry] = useState(null)
+    const [deletingEntry, setDeletingEntry] = useState(null)
 
     useEffect(() => {
         const savedEntries = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []
@@ -30,18 +32,15 @@ export function Diary({ onLogout }) {
         setEntries([newEntry, ...entries])
     }
 
-    function deleteEntry(entryId) {
-        const shouldDelete = confirm('האם אתה בטוח שברצונך למחוק את הרשומה?')
-        if (!shouldDelete) return
-
-        setEntries(prevEntries => prevEntries.filter(entry => entry.id !== entryId))
-    }
-
     function handleEditSave(updatedEntry) {
         const updated = entries.map(entry =>
             entry.id === updatedEntry.id ? updatedEntry : entry
         )
         setEntries(updated)
+    }
+
+    function handleDelete(entryId) {
+        setEntries(prevEntries => prevEntries.filter(entry => entry.id !== entryId))
     }
 
     return (
@@ -59,8 +58,18 @@ export function Diary({ onLogout }) {
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         <h4>{entry.date}</h4>
                         <div style={{ display: 'flex', gap: '0.5rem' }}>
-                            <button onClick={() => setEditingEntry(entry)} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>✏️</button>
-                            <button onClick={() => deleteEntry(entry.id)} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>❌</button>
+                            <button
+                                onClick={() => setEditingEntry(entry)}
+                                style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                            >
+                                ✏️
+                            </button>
+                            <button
+                                onClick={() => setDeletingEntry(entry)}
+                                style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                            >
+                                ❌
+                            </button>
                         </div>
                     </div>
                     <p>{entry.text}</p>
@@ -72,6 +81,14 @@ export function Diary({ onLogout }) {
                     entry={editingEntry}
                     onSave={handleEditSave}
                     onClose={() => setEditingEntry(null)}
+                />
+            )}
+
+            {deletingEntry && (
+                <DeleteModal
+                    entry={deletingEntry}
+                    onDelete={handleDelete}
+                    onClose={() => setDeletingEntry(null)}
                 />
             )}
         </div>

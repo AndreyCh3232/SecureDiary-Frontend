@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { EditModal } from './EditModal.jsx'
 import { DeleteModal } from './DeleteModal.jsx'
+import { AddModal } from './AddModal.jsx'
 
 const STORAGE_KEY = 'diaryEntries'
 
@@ -8,6 +9,7 @@ export function Diary({ onLogout }) {
     const [entries, setEntries] = useState([])
     const [editingEntry, setEditingEntry] = useState(null)
     const [deletingEntry, setDeletingEntry] = useState(null)
+    const [isAdding, setIsAdding] = useState(false)
 
     useEffect(() => {
         const savedEntries = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []
@@ -18,17 +20,7 @@ export function Diary({ onLogout }) {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(entries))
     }, [entries])
 
-    function addEntry() {
-        const today = new Date().toLocaleDateString('he-IL')
-        const text = prompt('מה עבר עליך היום?')
-        if (!text) return
-
-        const newEntry = {
-            id: Date.now(),
-            date: today,
-            text,
-        }
-
+    function handleAddEntry(newEntry) {
         setEntries([newEntry, ...entries])
     }
 
@@ -48,7 +40,9 @@ export function Diary({ onLogout }) {
             <div className="diary-header">
                 <h1>היומן שלי 📖</h1>
                 <div style={{ display: 'flex', gap: '0.5rem' }}>
-                    <button className="add-button" onClick={addEntry}>+ הוספת רשומה</button>
+                    <button className="add-button" onClick={() => setIsAdding(true)}>
+                        + הוספת רשומה
+                    </button>
                     <button className="logout-button" onClick={onLogout}>התנתק</button>
                 </div>
             </div>
@@ -91,6 +85,14 @@ export function Diary({ onLogout }) {
                     onClose={() => setDeletingEntry(null)}
                 />
             )}
+
+            {isAdding && (
+                <AddModal
+                    onAdd={handleAddEntry}
+                    onClose={() => setIsAdding(false)}
+                />
+            )}
+
         </div>
     )
 }

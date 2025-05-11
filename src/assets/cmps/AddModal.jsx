@@ -20,7 +20,7 @@ export function AddModal({ onAdd, onClose }) {
             <div className="modal-content">
                 <h3>הוספת רשומה</h3>
                 <textarea
-                    placeholder="מה עבר עליך היום..."
+                    placeholder="...מה עבר עליך היום"
                     value={text}
                     onChange={(e) => setText(e.target.value)}
                 />

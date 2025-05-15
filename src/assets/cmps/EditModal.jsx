@@ -19,8 +19,8 @@ export function EditModal({ entry, onSave, onClose }) {
                 <h3>עריכת רשומה</h3>
                 <textarea value={text} onChange={(e) => setText(e.target.value)} />
                 <div className="modal-actions">
-                    <button onClick={handleSave}>💾 שמור</button>
-                    <button onClick={onClose}>❌ ביטול</button>
+                    <button onClick={handleSave}>שמור</button>
+                    <button onClick={onClose}>ביטול</button>
                 </div>
             </div>
         </div>

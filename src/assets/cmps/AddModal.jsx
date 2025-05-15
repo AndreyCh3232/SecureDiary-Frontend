@@ -25,8 +25,8 @@ export function AddModal({ onAdd, onClose }) {
                     onChange={(e) => setText(e.target.value)}
                 />
                 <div className="modal-actions">
-                    <button onClick={handleAdd}>✔️ אישור</button>
-                    <button onClick={onClose}>❌ ביטול</button>
+                    <button onClick={handleAdd}>אישור</button>
+                    <button onClick={onClose}>ביטול</button>
                 </div>
             </div>
         </div>

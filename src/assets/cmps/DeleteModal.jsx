@@ -12,8 +12,8 @@ export function DeleteModal({ entry, onDelete, onClose }) {
                     האם אתה בטוח שברצונך למחוק את הרשומה <strong>{entry.date}</strong>?
                 </p>
                 <div className="modal-actions">
-                    <button onClick={handleDelete}>🗑️ מחק</button>
-                    <button onClick={onClose}>❌ ביטול</button>
+                    <button onClick={handleDelete}>מחק</button>
+                    <button onClick={onClose}>ביטול</button>
                 </div>
             </div>
         </div>

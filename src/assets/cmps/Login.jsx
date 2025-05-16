@@ -69,14 +69,17 @@ export function Login({ onLogin }) {
                                 התחבר כאן
                             </button>
                             {isRegister && (
-                                <div
-                                    style={{
-                                        marginTop: '1rem',
-                                        cursor: 'pointer'
-                                    }}
-                                    onClick={() => setIsRegister(false)}
-                                >
-                                    ?כבר רשום
+                                <div style={{ textAlign: 'center', marginTop: '1rem' }}>
+                                    <a
+                                        href="#"
+                                        className="link-text"
+                                        onClick={(e) => {
+                                            e.preventDefault()
+                                            setIsRegister(false)
+                                        }}
+                                    >
+                                        ?כבר רשום
+                                    </a>
                                 </div>
                             )}
                         </>
@@ -86,14 +89,17 @@ export function Login({ onLogin }) {
                                 צור חשבון
                             </button>
                             {!isRegister && (
-                                <div
-                                    style={{
-                                        marginTop: '1rem',
-                                        cursor: 'pointer',
-                                    }}
-                                    onClick={() => setIsRegister(true)}
-                                >
-                                    ?אין לך סיסמה
+                                <div style={{ textAlign: 'center', marginTop: '1rem' }}>
+                                    <a
+                                        href="#"
+                                        className="link-text"
+                                        onClick={(e) => {
+                                            e.preventDefault()
+                                            setIsRegister(true)
+                                        }}
+                                    >
+                                        ?אין לך סיסמה
+                                    </a>
                                 </div>
                             )}
                         </>

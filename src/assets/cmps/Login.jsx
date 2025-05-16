@@ -68,18 +68,34 @@ export function Login({ onLogin }) {
                             <button type="button" onClick={() => setIsRegister(false)}>
                                 התחבר כאן
                             </button>
-                            <div style={{ marginTop: '1rem' }}>
-                                ?כבר רשום
-                            </div>
+                            {isRegister && (
+                                <div
+                                    style={{
+                                        marginTop: '1rem',
+                                        cursor: 'pointer'
+                                    }}
+                                    onClick={() => setIsRegister(false)}
+                                >
+                                    ?כבר רשום
+                                </div>
+                            )}
                         </>
                     ) : (
                         <>
                             <button type="button" onClick={() => setIsRegister(true)}>
                                 צור חשבון
                             </button>
-                            <div style={{ marginTop: '1rem' }}>
-                                ?אין לך סיסמה
-                            </div>
+                            {!isRegister && (
+                                <div
+                                    style={{
+                                        marginTop: '1rem',
+                                        cursor: 'pointer',
+                                    }}
+                                    onClick={() => setIsRegister(true)}
+                                >
+                                    ?אין לך סיסמה
+                                </div>
+                            )}
                         </>
                     )}
                 </p>

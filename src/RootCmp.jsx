@@ -39,7 +39,11 @@ export function RootCmp() {
                     {isDarkMode ? '☀️ מצב בהיר' : '🌙 מצב כהה'}
                 </button>
 
-                <img src="src/assets/logos/logo-01.png" className="app-logo" />
+                <img
+                    src="src/assets/logos/logo-01.png"
+                    className="app-logo"
+                    onClick={() => window.location.reload()}
+                />
             </header>
 
             {isLoggedIn ? (

@@ -38,6 +38,8 @@ export function RootCmp() {
                 <button onClick={() => setIsDarkMode(prev => !prev)}>
                     {isDarkMode ? '☀️ מצב בהיר' : '🌙 מצב כהה'}
                 </button>
+
+                <img src="src/assets/logos/logo-01.png" className="app-logo" />
             </header>
 
             {isLoggedIn ? (

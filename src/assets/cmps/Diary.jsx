@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { EditModal } from './EditModal.jsx'
 import { DeleteModal } from './DeleteModal.jsx'
 import { AddModal } from './AddModal.jsx'
+import { Modal } from './Modal.jsx'
 
 const STORAGE_KEY = 'diaryEntries'
 
@@ -9,6 +10,7 @@ export function Diary({ onLogout }) {
     const [entries, setEntries] = useState([])
     const [editingEntry, setEditingEntry] = useState(null)
     const [deletingEntry, setDeletingEntry] = useState(null)
+    const [modalMsg, setModalMsg] = useState('')
     const [isAdding, setIsAdding] = useState(false)
 
     useEffect(() => {
@@ -43,7 +45,18 @@ export function Diary({ onLogout }) {
                     <button className="add-button" onClick={() => setIsAdding(true)}>
                         + הוספת רשומה
                     </button>
-                    <button className="logout-button" onClick={onLogout}>התנתק</button>
+                    <button
+                        className="logout-button"
+                        onClick={() => {
+                            setModalMsg('!!!התנתקת')
+                            setTimeout(() => {
+                                setModalMsg('')
+                                onLogout()
+                            }, 1500)
+                        }}
+                    >
+                        התנתק
+                    </button>
                 </div>
             </div>
 
@@ -90,6 +103,16 @@ export function Diary({ onLogout }) {
                 <AddModal
                     onAdd={handleAddEntry}
                     onClose={() => setIsAdding(false)}
+                />
+            )}
+
+            {modalMsg && (
+                <Modal
+                    message={modalMsg}
+                    onClose={() => {
+                        setModalMsg('')
+                        onLogout()
+                    }}
                 />
             )}
 

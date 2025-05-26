@@ -33,7 +33,7 @@ export function Login({ onLogin }) {
         }
 
         if (savedPassword === password) {
-            setModalMsg('!!!התחברת בהצלחה')
+            setModalMsg('(:התחברת בהצלחה')
             setTimeout(() => {
                 onLogin(password)
             }, 1500)

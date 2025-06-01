@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://andreych3232.github.io/SecureDiary",
+  "homepage": "https://andreych3232.github.io/SecureDiary-Frontend",
   "scripts": {
     "dev": "vite",
     "dev:remote": "npm run dev",

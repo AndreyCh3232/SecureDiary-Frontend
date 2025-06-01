@@ -5,11 +5,3 @@ export default defineConfig({
 	base: '/SecureDiary-Frontend/',
 	plugins: [react()],
 })
-
-// export default defineConfig({
-// 	plugins: [react()],
-// 	build: {
-// 		outDir: '../SecureDiary-Backend/public',
-// 		emptyOutDir: true,
-// 	},
-// })

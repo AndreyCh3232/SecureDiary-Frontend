@@ -71,7 +71,14 @@ export function Login({ onLogin }) {
                     <p style={{ marginTop: '1rem' }}>
                         {isRegister ? (
                             <>
-                                <button type="button" onClick={() => setIsRegister(false)}>
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        setIsRegister(false)
+                                        setPassword('')
+                                        setConfirmPassword('')
+                                    }}
+                                >
                                     התחבר כאן
                                 </button>
                                 <div style={{ textAlign: 'center', marginTop: '1rem' }}>
@@ -81,6 +88,8 @@ export function Login({ onLogin }) {
                                         onClick={(e) => {
                                             e.preventDefault()
                                             setIsRegister(false)
+                                            setPassword('')
+                                            setConfirmPassword('')
                                         }}
                                     >
                                         ?כבר רשום
@@ -89,7 +98,14 @@ export function Login({ onLogin }) {
                             </>
                         ) : (
                             <>
-                                <button type="button" onClick={() => setIsRegister(true)}>
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        setIsRegister(true)
+                                        setPassword('')
+                                        setConfirmPassword('')
+                                    }}
+                                >
                                     צור חשבון
                                 </button>
                                 <div style={{ textAlign: 'center', marginTop: '1rem' }}>
@@ -99,6 +115,8 @@ export function Login({ onLogin }) {
                                         onClick={(e) => {
                                             e.preventDefault()
                                             setIsRegister(true)
+                                            setPassword('')
+                                            setConfirmPassword('')
                                         }}
                                     >
                                         ?אין לך סיסמה
@@ -108,9 +126,10 @@ export function Login({ onLogin }) {
                         )}
                     </p>
                 </div>
-            </div>
+            </div >
 
-            {modalMsg && <Modal message={modalMsg} onClose={() => setModalMsg('')} />}
+            {modalMsg && <Modal message={modalMsg} onClose={() => setModalMsg('')} />
+            }
         </>
     )
 }
